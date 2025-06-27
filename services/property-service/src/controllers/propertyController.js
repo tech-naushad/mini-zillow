@@ -2,7 +2,11 @@ const propertyService = require('../services/propertyService');
 
 const create = async (req, res) => {
   try {
-    const property = await propertyService.createProperty(req.body);
+    console.log('Creating property with data:');
+    const file = req.file;
+    const propertyDetails = JSON.parse(req.body.propertyDetails);
+    propertyDetails.createdBy = "admin"; // Assuming req.user is set by authentication middleware
+    const property = await propertyService.createProperty(propertyDetails, file);
     res.status(201).json(property);
   } catch (err) {
     res.status(400).json({ error: err.message });

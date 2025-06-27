@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+       "name": "Launch Nodemon Debug",
+      "runtimeExecutable": "nodemon",
+      "program": "${workspaceFolder}/server.js", // Update to your entry file
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
