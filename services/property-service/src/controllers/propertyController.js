@@ -15,6 +15,7 @@ const create = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
+    console.log("Fetching properties");
     var page = parseInt(req.query.page) || 1;
     var limit = parseInt(req.query.limit) || 2;
     const paginationData = { page, limit };
@@ -28,6 +29,7 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
   try {
+    console.log('Fetching property with ID:', req.params.id);
     const property = await propertyService.getPropertyById(req.params.id);
     if (!property) return res.status(404).json({ error: 'Not found' });
     res.json(property);

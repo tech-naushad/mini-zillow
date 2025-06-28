@@ -1,0 +1,27 @@
+{
+  "name": "user-service",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon --inspect server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@uploadcare/rest-client": "^6.15.2",
+    "@uploadcare/upload-client": "^6.15.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

@@ -20,9 +20,7 @@ const findAll = async ({ page = 1, limit = 2 }) => {
     results
   };
 };
-const findById = async (id) => {
-  
-
+const findById = async (id) => {  
   return await Property.findById(id);
 };
 const update = async (id, data) => {
