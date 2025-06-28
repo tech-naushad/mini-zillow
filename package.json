@@ -1,6 +1,14 @@
 {
+  "scripts": {
+    "start": "concurrently \"npm run start:auth\" \"npm run start:property\"",
+    "start:auth": "npm --prefix services/auth-service start",    
+    "start:property": "npm --prefix services/property-service start"
+  },
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }

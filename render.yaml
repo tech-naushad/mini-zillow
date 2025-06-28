@@ -1,0 +1,18 @@
+services:
+  - name: auth-service
+    type: web
+    env: node
+    rootDir: services/auth-service
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    branch: main
+
+  - name: property-service
+    type: web
+    env: node
+    rootDir: services/property-service
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    branch: main
