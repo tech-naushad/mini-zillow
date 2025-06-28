@@ -8,8 +8,9 @@ const createProperty = async (data,file) => {
   return await propertyRepo.create(data);
 };
 
-const getAllProperties = async () => {
-  return await propertyRepo.findAll();
+const getAllProperties = async (data) => {
+  const { page = 1, limit = 2 } = data;
+  return await propertyRepo.findAll({ page, limit });
 };
 
 const getPropertyById = async (id) => {

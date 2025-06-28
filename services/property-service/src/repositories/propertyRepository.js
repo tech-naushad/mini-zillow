@@ -5,10 +5,24 @@ const create = async (data) => {
   return await newProperty.save();
 };
 
-const findAll = async (data) => {
-  return await Property.find();
+const findAll = async ({ page = 1, limit = 2 }) => {
+  const skip  = (page - 1) * limit;
+
+  const[total, results] = await Promise.all([
+    Property.countDocuments(),
+    Property.find().skip(skip).limit(limit)
+  ]);
+
+ return {
+    page,
+    totalPages: Math.ceil(total / limit),
+    totalResults: total,
+    results
+  };
 };
 const findById = async (id) => {
+  
+
   return await Property.findById(id);
 };
 const update = async (id, data) => {

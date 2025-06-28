@@ -12,19 +12,13 @@ const client = new UploadClient({
   authSchema: UploadcareSimpleAuthSchema,
 });
 
-const upload = async (file) => {
- // const buffer = Buffer.from(data?.content, "base64");
- // let fileName = data?.fileName;
+const upload = async (file) => { 
   try {
-    const fileBuffer = file.buffer; // Correct: only the file data
+    const fileBuffer = file.buffer; 
   const result = await client.uploadFile(fileBuffer, {
     fileName: file.originalname,
   });
-    // const result = await client.uploadFile(buffer, {
-    //   fileName,
-    //   contentType: data?.contentType,
-    // });
-    //const result = await client.uploadFile(file);
+    
     console.log("Upload successful:", result);
     return result;
   } catch (error) {

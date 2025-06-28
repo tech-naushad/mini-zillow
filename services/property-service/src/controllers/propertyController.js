@@ -15,7 +15,11 @@ const create = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const properties = await propertyService.getAllProperties();
+    var page = parseInt(req.query.page) || 1;
+    var limit = parseInt(req.query.limit) || 2;
+    const paginationData = { page, limit };
+
+    const properties = await propertyService.getAllProperties(paginationData);
     res.json(properties);
   } catch (err) {
     res.status(500).json({ error: err.message });
