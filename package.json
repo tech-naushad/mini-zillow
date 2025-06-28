@@ -4,6 +4,12 @@
     "start:auth": "npm --prefix services/auth-service start",    
     "start:property": "npm --prefix services/property-service start"
   },
+  "private": true,
+  "workspaces": [
+    "services/auth-service",
+    "services/property-service",
+    "shared"
+  ],
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.1"
