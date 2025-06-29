@@ -20,6 +20,24 @@ const findAll = async ({ page = 1, limit = 2 }) => {
     results
   };
 };
+
+const findAllByUser = async ({ userId,page = 1, limit = 2 }) => {
+   const skip = (page - 1) * limit;
+
+  const filter = { createdBy: userId }; 
+
+  const [total, results] = await Promise.all([
+    Property.countDocuments(filter),
+    Property.find(filter).skip(skip).limit(limit)
+  ]);
+
+  return {
+    page,
+    totalPages: Math.ceil(total / limit),
+    totalResults: total,
+    results
+  };
+};
 const findById = async (id) => {  
   return await Property.findById(id);
 };
@@ -30,4 +48,4 @@ const deleteById = async (id) => {
   console.log("deleteProperty is logged");
   return await Property.findByIdAndDelete(id);
 };
-module.exports = { create, findAll, findById, update, deleteById };
+module.exports = { create, findAll, findById, update, deleteById,findAllByUser };

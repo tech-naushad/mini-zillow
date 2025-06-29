@@ -12,7 +12,10 @@ const getAllProperties = async (data) => {
   const { page = 1, limit = 2 } = data;
   return await propertyRepo.findAll({ page, limit });
 };
-
+const getMyListing = async (data) => {
+  const {userId, page = 1, limit = 2 } = data;
+  return await propertyRepo.findAllByUser({userId, page, limit });
+};
 const getPropertyById = async (id) => {
   return await propertyRepo.findById(id);
 };
@@ -32,4 +35,5 @@ module.exports = {
   getPropertyById,
   updateProperty,
   deleteProperty,
+  getMyListing
 };

@@ -33,6 +33,27 @@ const getAll = async (req, res) => {
   }
 };
 
+const getMyListing = async (req, res) => {
+  try {
+    console.log("Fetching properties");
+    var page = parseInt(req.query.page) || 1;
+    var limit = parseInt(req.query.limit) || 2;
+    //const paginationData = { page, limit };
+    let userId;
+    if (!req.user?.payload?.email) {
+      userId = req.user.payload.userId;
+    }
+    else{
+      userId = req.user.payload.email; // Assuming req.user is set by authentication middleware
+    }
+     const paginationData = {userId, page, limit };
+    const properties = await propertyService.getMyListing(paginationData);
+    res.json(properties);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 const getById = async (req, res) => {
   try {
     console.log('Fetching property with ID:', req.params.id);
@@ -65,4 +86,4 @@ const remove = async (req, res) => {
   }
 };
 
-module.exports = {create, getAll, getById, update, remove};
+module.exports = {create, getAll, getById, update, remove,getMyListing};
