@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "start": "concurrently \"npm run start:auth\" \"npm run start:property\"",
-    "start:auth": "npm --prefix services/auth-service start",    
-    "start:property": "npm --prefix services/property-service start"
+    "start": "concurrently \"npm run dev:auth\" \"npm run dev:property\"",
+    "dev:auth": "npm --prefix services/auth-service run dev",
+    "dev:property": "npm --prefix services/property-service run dev"
   },
   "private": true,
   "workspaces": [

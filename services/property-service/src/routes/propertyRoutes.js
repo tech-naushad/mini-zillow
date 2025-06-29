@@ -4,10 +4,15 @@ const router = express.Router();
 const upload = require('@mini-zillow/shared/middlewares/contentTypeHandler');
 const {create, getAll, getById, update, remove} = require('../controllers/propertyController');
 
-router.post('/', upload.single('file'), create);
+
+const ensureAuthenticated = require('@mini-zillow/shared/middlewares/ensureAuthenticated');
+const  ensureAuthorized = require('@mini-zillow/shared/middlewares/ensureAuthorized');
+
+
+router.post('/',ensureAuthenticated, upload.single('file'), create);
 router.get('/', getAll);
-router.get('/:id', getById);
+router.get('/:id', ensureAuthenticated,getById);
 router.put('/:id', update);
-router.delete('/:id', remove);
+router.delete('/:id',ensureAuthenticated,ensureAuthorized('admin'), remove);
 
 module.exports = router;

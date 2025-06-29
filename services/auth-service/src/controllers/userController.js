@@ -23,5 +23,18 @@ const login = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+const adminlogin = async (req, res) => {
+  try {
+    console.log('Admin login attempt');
+    const user = await userService.adminLogin(req.body);
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(401).json({ error: 'Invalid credentials' });
+    }
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
 
-module.exports = { register, login };
+module.exports = { register, login,adminlogin };

@@ -10,7 +10,21 @@ const signUp = async (data) => {
   if(result) {
     var jwtToken = tokenGenerator({
       name: result.name,
-      email: result.email
+      email: result.email,
+      usertype: "user"
+    });
+    return { token: jwtToken };
+  }
+};
+
+const adminLogin = async (data) => {  
+  const result =  await userRepo.findAdmin(data.userId, data.password);
+  if(result) {
+    var jwtToken = tokenGenerator({
+      name: result.name,
+      userId: result.userId,
+      role: result.role,
+      usertype: "admin"
     });
     return { token: jwtToken };
   }
@@ -18,5 +32,6 @@ const signUp = async (data) => {
 
 module.exports = {
  signUp,
- signIn
+ signIn,
+ adminLogin
 };

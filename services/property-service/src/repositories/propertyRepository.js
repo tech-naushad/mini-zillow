@@ -26,7 +26,8 @@ const findById = async (id) => {
 const update = async (id, data) => {
   return await Property.findByIdAndUpdate(id, data, { new: true });
 };
-const deleteById = async (id, data) => {
+const deleteById = async (id) => {
+  console.log("deleteProperty is logged");
   return await Property.findByIdAndDelete(id);
 };
 module.exports = { create, findAll, findById, update, deleteById };

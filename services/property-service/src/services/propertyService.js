@@ -4,7 +4,7 @@ const documentService = require("./documentService");
 const createProperty = async (data,file) => {
   var result = await documentService.upload(file);
   data.imageUrl = result?.cdnUrl + result?.originalFilename;
-  data.createdBy = "admin"; // Assuming req.user is set by authentication middleware
+  data.createdBy = data.createdBy; 
   return await propertyRepo.create(data);
 };
 
@@ -22,7 +22,8 @@ const updateProperty = async (id, data) => {
 };
 
 const deleteProperty = async (id) => {
-  return await propertyRepo.delete(id);
+   console.log("deleteProperty is logged");
+  return await propertyRepo.deleteById(id);
 };
 
 module.exports = {

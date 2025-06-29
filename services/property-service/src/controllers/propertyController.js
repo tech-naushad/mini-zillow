@@ -5,7 +5,13 @@ const create = async (req, res) => {
     console.log('Creating property with data:');
     const file = req.file;
     const propertyDetails = JSON.parse(req.body.propertyDetails);
-    propertyDetails.createdBy = "admin"; // Assuming req.user is set by authentication middleware
+    if (!req.user?.payload?.email) {
+      propertyDetails.createdBy = req.user.payload.userId;
+    }
+    else{
+      propertyDetails.createdBy = req.user.payload.email; // Assuming req.user is set by authentication middleware
+    }
+   
     const property = await propertyService.createProperty(propertyDetails, file);
     res.status(201).json(property);
   } catch (err) {
@@ -50,6 +56,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
+    console.log("remove is logged");
     const result = await propertyService.deleteProperty(req.params.id);
     if (!result) return res.status(404).json({ error: 'Not found' });
     res.json({ message: 'Deleted' });
