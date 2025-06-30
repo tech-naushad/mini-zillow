@@ -1,5 +1,26 @@
-# mini-zillow-api
-Nodejs Microservices based architecture 
+## 🚀 Solution Details
+ - Architecture  - Microservices Property-Service and Auth Service
+ - Shared Folder - For utility and middlewares
+ - Services hosted on render free tier with limited capability
+ - Image are uploaded on uploadcare free version - http://app.uploadcare.com/projects
+ - Database - Mongodb with Mongoose schema implementation
+ - CI/CD - render.yaml for automated build and publish
+ - Components -  Gneric UI components such as buttons, etc 
+ - Rest all self-explainatory
 
-# mongo atlas
-https://cloud.mongodb.com/v2/63b4276b0b3b9d3a0cf9fef3#/clusters
+# 🏠 Services live url
+https://property-service-raoo.onrender.com
+https://auth-service-68a2.onrender.com
+
+# 🏠 Githhub 
+
+- https://github.com/tech-naushad/mini-zillow
+
+
+## 🚀 Futures scops
+
+ - Logging and Tracing implemenation
+ - PM2 or other tools to run service multi conatiner env. Currently running on single instance only with limited cabaility 
+ - Message Broker can be included for high availity 
+ - Alert & Notification
+
